@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Series | Dark Theme</title>
+  <meta name="description" content="Redesigned Test Series page in dark theme. Responsive, modern, and optimized for clarity.">
+  <!-- Favicon: neon dot / icon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Segoe UI' font-size='40' fill='%2300f0ff'>✦</text></svg>">
+  <!-- Open Graph (fill in actual deployed URL and image after deployment) -->
+  <meta property="og:title" content="Test Series – Dark Theme Redesign">
+  <meta property="og:description" content="Fast, responsive, corporate-ready test series landing page with urgency, analytics preview, and interactive UX.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="(PUT_DEPLOYED_SCREENSHOT_OR_SOCIAL_PREVIEW_IMAGE_URL_HERE)">
+  <meta property="og:url" content="(YOUR_DEPLOYED_LINK_HERE)">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      --bg:#0f1117;
+      --card:#1f2232;
+      --radius:16px;
+      --highlight:#00f0ff;
+      --text:#e5e9f0;
+      --muted:#8a97b3;
+      --shadow:0 30px 60px -10px rgba(0,240,255,.15);
+      --transition:.35s cubic-bezier(.4,.2,.2,1);
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    * {box-sizing:border-box;}
+    body {
+      margin:0;
+      background:linear-gradient(135deg,#0f1117 0%,#1b1f38 80%);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.55;
+      scroll-behavior:smooth;
+      transition: background var(--transition), color var(--transition);
+    }
+    a {color: inherit; text-decoration:none;}
+    .container {
+      width: min(1200px, 100% - 32px);
+      margin:0 auto;
+      padding:0 16px;
+    }
+    header {
+      padding:24px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+    .logo {
+      font-weight:700;
+      font-size:1.25rem;
+      letter-spacing:1px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .nav {
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .nav a {
+      position:relative;
+      padding:6px 8px;
+      font-size:0.9rem;
+      border-radius:8px;
+      transition: var(--transition);
+    }
+    .nav a:hover {
+      background: rgba(0,240,255,.08);
+      color: var(--highlight);
+    }
+    .btn-primary {
+      background: var(--highlight);
+      color:#0f1117;
+      padding:14px 26px;
+      border:none;
+      cursor:pointer;
+      font-weight:600;
+      border-radius:999px;
+      position:relative;
+      overflow:hidden;
+      transition: var(--transition);
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+    .btn-primary:hover {
+      filter:brightness(1.05);
+      transform:scale(1.02);
+      box-shadow: 0 20px 60px -10px rgba(0,240,255,.6);
+    }
+    .hero {
+      padding:120px 0 80px;
+      display:flex;
+      gap:60px;
+      flex-wrap:wrap;
+      align-items:center;
+      position:relative;
+    }
+    .hero-text {
+      flex:1;
+      min-width:280px;
+    }
+    .hero-text h1 {
+      margin:0;
+      font-size:2.8rem;
+      line-height:1.1;
+      font-weight:700;
+    }
+    .hero-text p {
+      margin:16px 0 24px;
+      font-size:1.05rem;
+      max-width:620px;
+      color: var(--muted);
+    }
+    .ctas {
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .secondary-btn {
+      padding:14px 24px;
+      border:2px solid var(--highlight);
+      border-radius:999px;
+      background: transparent;
+      color: var(--text);
+      font-weight:600;
+      cursor:pointer;
+      transition: var(--transition);
+      position:relative;
+    }
+    .secondary-btn:hover {
+      background:rgba(0,240,255,.06);
+      color: var(--highlight);
+    }
+    .countdown {
+      margin-top:8px;
+      font-size:0.9rem;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      color: #fff;
+    }
+    .countdown span {
+      background: rgba(255,255,255,0.08);
+      padding:6px 12px;
+      border-radius:8px;
+      font-weight:600;
+      display:inline-flex;
+      min-width:60px;
+      justify-content:center;
+    }
+    .trust-bar {
+      margin:16px 0 0;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      background: rgba(255,255,255,0.03);
+      padding:10px 16px;
+      border-radius:10px;
+      font-size:0.85rem;
+      max-width:720px;
+      position:relative;
+      overflow:hidden;
+    }
+    .trust-bar:before {
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0; bottom:0;
+      pointer-events:none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 60%);
+    }
+    .hero-visual {
+      flex:1;
+      min-width:280px;
+      display:flex;
+      justify-content:center;
+      position:relative;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding:32px;
+      position:relative;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .badge {
+      display:inline-block;
+      background: rgba(0,240,255,.1);
+      color: var(--highlight);
+      padding:6px 14px;
+      font-size:0.65rem;
+      font-weight:600;
+      border-radius:999px;
+      letter-spacing:1px;
+      margin-bottom:8px;
+    }
+    .features {
+      padding:80px 0 40px;
+    }
+    .features-grid {
+      display:grid;
+      gap:24px;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      margin-top:24px;
+    }
+    .feature-card {
+      background:rgba(255,255,255,0.03);
+      border-radius:14px;
+      padding:22px 18px;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.06);
+      transition: var(--transition);
+    }
+    .feature-card:hover {
+      transform:translateY(-4px);
+      box-shadow: 0 25px 55px -10px rgba(0,240,255,.35);
+      border-color: var(--highlight);
+    }
+    .feature-icon {
+      width:48px;
+      height:48px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,240,255,.08);
+      border-radius:12px;
+      margin-bottom:12px;
+      position:relative;
+      font-size:1.2rem;
+    }
+    .pricing {
+      padding:100px 0 60px;
+      position:relative;
+    }
+    .pricing-inner {
+      display:flex;
+      gap:32px;
+      flex-wrap:wrap;
+      align-items:stretch;
+      margin-top:16px;
+    }
+    .plan {
+      flex:1;
+      min-width:260px;
+      background: var(--card);
+      border-radius:16px;
+      padding:32px;
+      position:relative;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+    .plan.popular {
+      border:2px solid var(--highlight);
+    }
+    .plan h3 {
+      margin-top:0;
+      font-size:1.5rem;
+    }
+    .price {
+      font-size:2.4rem;
+      font-weight:700;
+      margin:12px 0;
+    }
+    .features-list {
+      list-style:none;
+      padding:0;
+      margin:16px 0 24px;
+    }
+    .features-list li {
+      margin-bottom:10px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size:0.95rem;
+    }
+    .features-list li::before {
+      content:"✓";
+      color: var(--highlight);
+      font-weight:700;
+      margin-right:4px;
+      flex-shrink:0;
+    }
+    .plan .btn {
+      width:100%;
+      margin-top:8px;
+    }
+    .anchor-cta {
+      display:inline-block;
+      margin-top:4px;
+      font-size:0.9rem;
+      text-decoration:underline;
+      cursor:pointer;
+    }
+    .testimonial-section {
+      margin:80px 0 40px;
+      position:relative;
+    }
+    .testimonial-wrapper {
+      max-width:1000px;
+      margin:0 auto;
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+      justify-content:center;
+      position:relative;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.04);
+      border-radius:14px;
+      padding:24px 28px;
+      flex:1;
+      min-width:260px;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+      transition: var(--transition);
+    }
+    .testimonial-text {
+      font-size:0.95rem;
+      margin:0 0 12px;
+      line-height:1.4;
+    }
+    .testimonial-author {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:0.8rem;
+    }
+    .avatar {
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background: rgba(255,255,255,0.1);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      position:relative;
+    }
+    .footer {
+      margin-top:120px;
+      padding:60px 0 40px;
+      border-top:1px solid rgba(255,255,255,0.08);
+      font-size:0.9rem;
+    }
+    .footer-grid {
+      display:grid;
+      gap:24px;
+      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+    }
+    .footer h4 {
+      margin:0 0 12px;
+      font-size:1rem;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+    .socials {
+      display:flex;
+      gap:14px;
+      margin-top:6px;
+    }
+    .socials a {
+      display:inline-flex;
+      width:32px;
+      height:32px;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      background: rgba(255,255,255,0.03);
+      transition: var(--transition);
+      position:relative;
+      font-size:0.9rem;
+    }
+    .socials a:hover {
+      background: rgba(0,240,255,.1);
+      box-shadow: 0 15px 45px -5px rgba(0,240,255,.3);
+    }
+    .small {
+      font-size:0.75rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .progress-wrapper {
+      background: rgba(255,255,255,0.07);
+      border-radius:999px;
+      overflow:hidden;
+      height:10px;
+      margin-top:10px;
+      position:relative;
+    }
+    .progress-bar {
+      height:100%;
+      width:0;
+      background: linear-gradient(90deg,var(--highlight), #8affff);
+      border-radius:999px;
+      transition: width .8s ease-out;
+    }
+    .preview-toggle {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:0.75rem;
+      background: rgba(255,255,255,0.04);
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.08);
+      cursor:pointer;
+      user-select:none;
+      position:fixed;
+      bottom:16px;
+      right:16px;
+      z-index:1000;
+      backdrop-filter:blur(8px);
+    }
+    .preview-toggle input {
+      margin:0;
+      accent-color: var(--highlight);
+      cursor:pointer;
+    }
+    .glow {
+      position:absolute;
+      top:-60px;
+      right:-80px;
+      width:220px;
+      height:220px;
+      background: radial-gradient(circle at 30% 30%, rgba(0,240,255,.4), transparent 60%);
+      filter: blur(90px);
+      pointer-events:none;
+      z-index:0;
+    }
+    .glow-small {
+      position:absolute;
+      bottom:-40px;
+      left:-60px;
+      width:120px;
+      height:120px;
+      background: radial-gradient(circle at 40% 40%, rgba(0,240,255,.25), transparent 60%);
+      filter: blur(70px);
+      pointer-events:none;
+      z-index:0;
+    }
+    .highlight-anchor {
+      display:inline-block;
+      position:relative;
+    }
+    .highlight-anchor::after {
+      content:'';
+      position:absolute;
+      bottom:-4px;
+      left:0;
+      width:100%;
+      height:3px;
+      background: var(--highlight);
+      border-radius:2px;
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:var(--transition);
+    }
+    .highlight-anchor:hover::after {
+      transform:scaleX(1);
+    }
+    /* Preview / sketch overlay */
+    .preview-mode {
+      filter: grayscale(30%) brightness(1.1);
+    }
+    .preview-mode * {
+      outline:1px dashed rgba(255,255,255,0.15);
+    }
+    .preview-mode .btn-primary,
+    .preview-mode .secondary-btn {
+      background:transparent !important;
+      color: var(--text) !important;
+      box-shadow:none !important;
+      border:2px dashed rgba(255,255,255,0.3);
+    }
+    .preview-mode .badge {
+      background: rgba(255,255,255,.02);
+      color: var(--text);
+      border:1px dashed rgba(255,255,255,0.2);
+    }
+    @media (max-width:1024px){
+      .hero {gap:40px;}
+      .hero-text h1 {font-size:2.4rem;}
+    }
+    @media (max-width:780px){
+      .hero {flex-direction:column-reverse; padding:80px 0 40px;}
+      .hero-text h1 {font-size:2.2rem;}
+      .pricing-inner {flex-direction:column;}
+      .testimonial-wrapper {flex-direction:column;}
+    }
+    @media (prefers-reduced-motion: reduce){
+      * {transition:none !important;}
+      .hero .card {animation:none !important; transform:none !important;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header aria-label="Main navigation">
+      <div class="logo" aria-label="Logo">
+        <div style="background: var(--highlight); width:8px; height:8px; border-radius:50%; margin-right:4px;"></div>
+        <div>TestSeries+</div>
+      </div>
+      <nav class="nav" aria-label="Site links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+        <a href="#pricing" class="btn-primary" aria-label="Get Started">Get Started</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" aria-label="Hero section">
+      <div class="hero-text">
+        <div class="badge">1-Day Challenge</div>
+        <h1>Master Your Prep with Smart Test Series</h1>
+        <p>Realistic full-length tests, instant analytics, and personalized insights. Designed for aspirants who want to level up quickly—with clarity and confidence.</p>
+        <div class="ctas">
+          <button class="btn-primary" onclick="scrollToSection('pricing')">Start Now</button>
+          <button class="secondary-btn" onclick="scrollToSection('features')">Learn More</button>
+        </div>
+        <div class="countdown" aria-label="Countdown timer">
+          <div>Challenge ends in:</div>
+          <span id="cd-hours">--</span>
+          <span id="cd-mins">--</span>
+          <span id="cd-secs">--</span>
+        </div>
+        <div class="trust-bar" aria-label="Trust indicators">
+          <div>🔥 Trusted by <strong>5,000+</strong> aspirants</div>
+          <div>🛡️ 7-day satisfaction guarantee</div>
+          <div>🚀 Instant access after signup</div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="card" style="max-width:360px; width:100%; position:relative; z-index:1;">
+          <div style="display:flex; justify-content:space-between; align-items:start;">
+            <div>
+              <div class="badge">Popular</div>
+            </div>
+            <div style="font-size:0.9rem; color: var(--muted);">Live Preview</div>
+          </div>
+          <h2 style="margin:8px 0 4px;">Full Test Series</h2>
+          <p style="margin:6px 0 16px; font-size:0.9rem; color: var(--muted);">
+            10+ full-length tests with analytics and topic breakdowns.
+          </p>
+          <!-- Animated progress bar -->
+          <div style="margin-top:8px;">
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;">
+              <div>Completion</div>
+              <div id="progress-label">0%</div>
+            </div>
+            <div class="progress-wrapper" aria-label="Test progress">
+              <div class="progress-bar" id="progress-bar"></div>
+            </div>
+          </div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+            <div style="background: rgba(255,255,255,0.03); padding:10px 14px; border-radius:10px; font-size:0.75rem;">
+              Score: <strong>80%</strong>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); padding:10px 14px; border-radius:10px; font-size:0.75rem;">
+              Time Left: <strong>1h 30m</strong>
+            </div>
+          </div>
+          <div style="margin-top:18px;">
+            <button class="btn-primary" style="padding:10px 20px; font-size:0.9rem;">Take Test</button>
+          </div>
+          <div class="glow-small" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features" aria-label="Features">
+      <div class="container">
+        <div style="text-align:center; max-width:760px; margin:0 auto;">
+          <div class="badge">Why Choose It</div>
+          <h2 style="margin:8px 0 12px; font-size:2rem;">Built for Focused Achievers</h2>
+          <p style="margin:0 auto; color: var(--muted);">
+            Everything you need in one place—no fluff. Our test series is engineered to simulate real exam pressure while giving you actionable feedback instantly.
+          </p>
+        </div>
+        <div class="features-grid" aria-label="List of key features">
+          <div class="feature-card" aria-label="Live analytics">
+            <div class="feature-icon" aria-hidden="true">📊</div>
+            <h3 style="margin:6px 0 6px;">Live Performance Analytics</h3>
+            <p style="margin:0; font-size:0.9rem; color: var(--muted);">
+              See strengths and weaknesses broken down by topic immediately after each test.
+            </p>
+          </div>
+          <div class="feature-card" aria-label="Adaptive difficulty">
+            <div class="feature-icon" aria-hidden="true">⚙️</div>
+            <h3 style="margin:6px 0 6px;">Adaptive Difficulty</h3>
+            <p style="margin:0; font-size:0.9rem; color: var(--muted);">
+              Tests adjust to your level, ensuring you’re always challenged but not overwhelmed.
+            </p>
+          </div>
+          <div class="feature-card" aria-label="Detailed solutions">
+            <div class="feature-icon" aria-hidden="true">🧠</div>
+            <h3 style="margin:6px 0 6px;">Step-by-Step Solutions</h3>
+            <p style="margin:0; font-size:0.9rem; color: var(--muted);">
+              Understand every mistake with clear, concise explanations and tips.
+            </p>
+          </div>
+          <div class="feature-card" aria-label="Mobile friendly">
+            <div class="feature-icon" aria-hidden="true">📱</div>
+            <h3 style="margin:6px 0 6px;">100% Responsive</h3>
+            <p style="margin:0; font-size:0.9rem; color: var(--muted);">
+              Prep on the go—fully optimized for mobile, tablet, and desktop.
+            </p>
+          </div>
+          <div class="feature-card" aria-label="Time tracking">
+            <div class="feature-icon" aria-hidden="true">⏱️</div>
+            <h3 style="margin:6px 0 6px;">Time Management Insights</h3>
+            <p style="margin:0; font-size:0.9rem; color: var(--muted);">
+              Learn how much time you're spending per section and where you're losing minutes.
+            </p>
+          </div>
+          <div class="feature-card" aria-label="Comparison">
+            <div class="feature-icon" aria-hidden="true">🔥</div>
+            <h3 style="margin:6px 0 6px;">Rank & Peer Comparison</h3>
+            <p style="margin:0; font-size:0.9rem; color: var(--muted);">
+              See how you stack up against others taking the same tests in real time.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / CTA -->
+    <section class="pricing" id="pricing" aria-label="Pricing and call to action">
+      <div class="container">
+        <div style="text-align:center; max-width:700px; margin:0 auto;">
+          <div class="badge">Choose Your Plan</div>
+          <h2 style="margin:8px 0 12px; font-size:2rem;">Simple, Transparent Pricing</h2>
+          <p style="margin:0; color: var(--muted);">
+            No hidden fees. Pick a plan that fits your preparation timeline and get instant access to all features.
+          </p>
+        </div>
+        <div class="pricing-inner">
+          <div class="plan" aria-label="Basic plan">
+            <div class="badge" style="background:rgba(255,255,255,0.05); color: #fff;">Starter</div>
+            <h3>Basic</h3>
+            <div class="price">₹499</div>
+            <p style="margin:4px 0 12px; font-size:0.85rem; color: var(--muted);">1-month access, limited tests</p>
+            <ul class="features-list">
+              <li>5 Full-Length Tests</li>
+              <li>Basic Analytics</li>
+              <li>Solution Explanations</li>
+              <li>Mobile Friendly</li>
+            </ul>
+            <button class="btn-primary btn" aria-label="Select Basic">Select Plan</button>
+          </div>
+          <div class="plan popular" aria-label="Pro plan">
+            <div class="badge">Most Popular</div>
+            <h3>Pro</h3>
+            <div class="price">₹1299</div>
+            <p style="margin:4px 0 12px; font-size:0.85rem; color: var(--muted);">3-month access, full features</p>
+            <ul class="features-list">
+              <li>15+ Tests</li>
+              <li>Advanced Analytics</li>
+              <li>Adaptive Difficulty</li>
+              <li>Peer Comparison</li>
+              <li>Time Insights</li>
+            </ul>
+            <button class="btn-primary btn" aria-label="Select Pro">Get Pro</button>
+          </div>
+          <div class="plan" aria-label="Premium plan">
+            <div class="badge" style="background:rgba(255,255,255,0.05); color: #fff;">Advance</div>
+            <h3>Premium</h3>
+            <div class="price">₹2499</div>
+            <p style="margin:4px 0 12px; font-size:0.85rem; color: var(--muted);">6-month access + priority support</p>
+            <ul class="features-list">
+              <li>Unlimited Tests</li>
+              <li>Personalized Report</li>
+              <li>1-on-1 Feedback</li>
+              <li>Early Access</li>
+              <li>Priority Support</li>
+            </ul>
+            <button class="btn-primary btn" aria-label="Select Premium">Go Premium</button>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:24px;">
+          <div class="small">All plans come with a 7-day satisfaction guarantee. Cancel anytime.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonial-section" id="testimonials" aria-label="Testimonials">
+      <div class="container">
+        <div style="text-align:center; max-width:700px; margin:0 auto;">
+          <div class="badge">What Aspirants Say</div>
+          <h2 style="margin:8px 0 12px; font-size:2rem;">Trusted & Loved</h2>
+          <p style="margin:0; color: var(--muted);">
+            Real feedback from users who saw measurable improvement after using the test series.
+          </p>
+        </div>
+        <div class="testimonial-wrapper" aria-label="Rotating testimonials">
+          <div class="testimonial-card" data-index="0">
+            <p class="testimonial-text">"The adaptive difficulty and instant breakdown helped me target weak areas. My score jumped 25% in just two weeks."</p>
+            <div class="testimonial-author">
+              <div class="avatar">A</div>
+              <div>
+                <div><strong>Aarti Sharma</strong></div>
+                <div style="color: rgba(255,255,255,0.6);">Aspirant, 2025 Batch</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card" data-index="1" style="opacity:0; position:absolute; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:450px;">
+            <p class="testimonial-text">"The countdown urgency and progress visualization kept me focused. Felt like a personal coach pushing me forward."</p>
+            <div class="testimonial-author">
+              <div class="avatar">R</div>
+              <div>
+                <div><strong>Rohit Menon</strong></div>
+                <div style="color: rgba(255,255,255,0.6);">Self-Study Aspirant</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact" aria-label="Footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4>About</h4>
+            <p style="margin:0;">
+              TestSeries+ is built to help serious aspirants gain clarity through data-driven test practice. Dark-themed, fast, and focused.
+            </p>
+          </div>
+          <div>
+            <h4>Links</h4>
+            <ul style="list-style:none; margin:0; padding:0;">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="#">Support</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <ul style="list-style:none; margin:0; padding:0;">
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Sitemap</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <p style="margin:0;">Email: help@testseriesplus.io</p>
+            <p style="margin:4px 0 0;">Phone: +91 98765 43210</p>
+          </div>
+          <div>
+            <h4>Follow</h4>
+            <div class="socials">
+              <a aria-label="Twitter" href="#" title="Twitter">T</a>
+              <a aria-label="LinkedIn" href="#" title="LinkedIn">L</a>
+              <a aria-label="YouTube" href="#" title="YouTube">Y</a>
+            </div>
+            <div style="margin-top:14px;" class="small">
+              © 2025 TestSeries+. All rights reserved.
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Preview toggle -->
+  <label class="preview-toggle" aria-label="Preview mode toggle">
+    <input type="checkbox" id="preview-checkbox" /> Preview Mode
+  </label>
+
+  <script>
+    // Smooth scroll helper
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      const offset = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({top: offset, behavior:'smooth'});
+    }
+
+    // Hero card floating effect (disabled if reduced motion)
+    const heroCard = document.querySelector('.hero .card');
+    if(heroCard && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      let angle = 0;
+      setInterval(()=>{
+        angle += 0.2;
+        const y = Math.sin(angle/25) * 3;
+        heroCard.style.transform = `translateY(${y}px)`;
+      }, 50);
+    }
+
+    // Animated progress bar (simulate completion)
+    function animateProgress() {
+      const bar = document.getElementById('progress-bar');
+      const label = document.getElementById('progress-label');
+      if(!bar || !label) return;
+      let target = 80; // demonstration value
+      let current = 0;
+      const step = () => {
+        if(current >= target) return;
+        current += 1;
+        bar.style.width = current + '%';
+        label.textContent = current + '%';
+        setTimeout(step, 15);
+      };
+      step();
+    }
+    document.addEventListener('DOMContentLoaded', animateProgress);
+
+    // Countdown timer (24h from first load)
+    const STORAGE_KEY = 'testSeriesCountdownTarget';
+    function initCountdown() {
+      let target = localStorage.getItem(STORAGE_KEY);
+      if(!target){
+        const now = Date.now();
+        target = now + 24 * 60 * 60 * 1000;
+        localStorage.setItem(STORAGE_KEY, target);
+      } else {
+        target = parseInt(target, 10);
+      }
+
+      const update = () => {
+        const now = Date.now();
+        let diff = target - now;
+        if(diff < 0){
+          document.getElementById('cd-hours').textContent = '00h';
+          document.getElementById('cd-mins').textContent = '00m';
+          document.getElementById('cd-secs').textContent = '00s';
+          return;
+        }
+        const hrs = Math.floor(diff / (1000 * 60 * 60));
+        diff -= hrs * (1000 * 60 * 60);
+        const mins = Math.floor(diff / (1000 * 60));
+        diff -= mins * (1000 * 60);
+        const secs = Math.floor(diff / 1000);
+        document.getElementById('cd-hours').textContent = String(hrs).padStart(2,'0') + 'h';
+        document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0') + 'm';
+        document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0') + 's';
+      };
+      update();
+      setInterval(update, 1000);
+    }
+    initCountdown();
+
+    // Preview mode toggle persistence
+    const previewCheckbox = document.getElementById('preview-checkbox');
+    const storedPreview = localStorage.getItem('previewModeEnabled');
+    if(storedPreview === 'true') {
+      previewCheckbox.checked = true;
+      document.body.classList.add('preview-mode');
+    }
+    previewCheckbox.addEventListener('change', () => {
+      if(previewCheckbox.checked){
+        document.body.classList.add('preview-mode');
+        localStorage.setItem('previewModeEnabled', 'true');
+      } else {
+        document.body.classList.remove('preview-mode');
+        localStorage.setItem('previewModeEnabled', 'false');
+      }
+    });
+
+    // Testimonial carousel simple rotation
+    (function rotateTestimonials(){
+      const cards = document.querySelectorAll('.testimonial-card');
+      if(cards.length < 2) return;
+      let current = 0;
+      setInterval(()=>{
+        const next = (current + 1) % cards.length;
+        cards[current].style.opacity = '0';
+        cards[current].style.pointerEvents = 'none';
+        cards[current].style.position = 'absolute';
+        cards[next].style.opacity = '1';
+        cards[next].style.position = 'relative';
+        current = next;
+      }, 6000);
+    })();
+  </script>
+</body>
+</html>
