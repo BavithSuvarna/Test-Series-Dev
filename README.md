@@ -41,5 +41,5 @@ Built with only **HTML, CSS, and JavaScript** — no frameworks or libraries.
 
 ---
 
-## 📂 Folder Structure
+
 
