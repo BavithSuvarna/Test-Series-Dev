@@ -7,7 +7,7 @@ Built with only **HTML, CSS, and JavaScript** — no frameworks or libraries.
 
 ## 📸 Preview
 
-![Desktop View Screenshot](./image.png)  
+![Desktop View Screenshot](./image1.png)  
 
 
 ---
